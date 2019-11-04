@@ -9,7 +9,7 @@ CONSUMER_KEY = CONSUMER_SECRET = ACCESS_TOKEN = ACCESS_TOKEN_SECRET = ''
 #DIR_NAME = "/var/lib/motion/"
 DIR_NAME = "./tmp/"
 
-def postTweet(file_name):
+def postTweet(image_path):
     print("[+] postTweet() is called")
     print(file_name)
 
@@ -52,7 +52,8 @@ def postTweet(file_name):
     api.update_with_media(filename = image_path, status = text_list[random.randint(0, len(text_list) - 1)])
     #api.update_status(status = text)
 
-
+    os.remove(image_path)
+    
 def detect():
     print("[+] detect() is called.")
 
