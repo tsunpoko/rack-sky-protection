@@ -25,7 +25,7 @@ def postTweet(image_path):
 
     os.system("ffmpeg -y -i " + image_path + " " + image_path_gif)
 
-    time.sleep(10)
+    time.sleep(20)
 
     text_list = [
     "沖縄高専 光輝け",
@@ -72,6 +72,8 @@ def detect():
 
     if len(ls) != 1:
         return
+
+    time.sleep(10)
 
     postTweet(DIR_NAME + ls[0])
 
