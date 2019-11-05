@@ -6,19 +6,24 @@ import random
 import config
 
 CONSUMER_KEY = CONSUMER_SECRET = ACCESS_TOKEN = ACCESS_TOKEN_SECRET = ''
-#DIR_NAME = "/var/lib/motion/"
-DIR_NAME = "./tmp/"
+DIR_NAME = "/var/lib/motion/"
+#DIR_NAME = "./tmp/"
 
 def postTweet(image_path):
     print("[+] postTweet() is called")
-    print(file_name)
+    print(image_path)
 
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
     api = tweepy.API(auth)
 
-    image_path = "./tmp/output.gif"
+    #image_path = "./tmp/output.gif"
+
+    # mkv to gif
+    image_path_gif = image_path.replace("mkv", "gif")
+
+    os.system("ffmpeg -i " + image_path + " -r 10 " + image_path_gif)
 
     text_list = [
     "沖縄高専 光輝け",
@@ -49,11 +54,15 @@ def postTweet(image_path):
     ".@YouWatanabeEins"
     ]
 
-    api.update_with_media(filename = image_path, status = text_list[random.randint(0, len(text_list) - 1)])
+    api.update_with_media(filename = image_path_gif, status = text_list[random.randint(0, len(text_list) - 1)])
     #api.update_status(status = text)
 
-    os.remove(image_path)
-    
+    ls =  os.listdir(DIR_NAME)
+
+    if len(ls) > 0:
+        for i in ls:
+            os.remove(DIR_NAME + i)
+
 def detect():
     print("[+] detect() is called.")
 
