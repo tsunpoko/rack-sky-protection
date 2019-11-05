@@ -12,6 +12,6 @@ WORKDIR ./rack-sky-protection
 
 RUN pip3 install tweepy
 
-chmod +x run.sh
+RUN chmod +x run.sh
 
 CMD ["./run.sh"]
