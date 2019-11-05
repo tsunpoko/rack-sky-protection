@@ -23,7 +23,7 @@ def postTweet(image_path):
     # mkv to gif
     image_path_gif = image_path.replace("mkv", "gif")
 
-    os.system("ffmpeg -i " + image_path + "" + image_path_gif)
+    os.system("ffmpeg -y -i " + image_path + "" + image_path_gif)
 
     text_list = [
     "沖縄高専 光輝け",
