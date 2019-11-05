@@ -25,6 +25,8 @@ def postTweet(image_path):
 
     os.system("ffmpeg -y -i " + image_path + " " + image_path_gif)
 
+    time.sleep(3)
+    
     text_list = [
     "沖縄高専 光輝け",
     "しんどすぎて振動するオタク",
